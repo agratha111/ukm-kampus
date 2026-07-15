@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Beranda - Portal UKM IPWIJA</title>
+    <style>
+        :root { --nav-bg: #002f5a; --accent: #ffb400; --bg: #f4f7f9; --space: 30px; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Arial, sans-serif; }
+        body { display: flex; min-height: 100vh; background-color: var(--bg); }
+        
+        /* Sidebar */
+        .sidebar { width: 260px; background: var(--nav-bg); color: white; padding: var(--space); flex-shrink: 0; }
+        .sidebar h2 { font-size: 20px; margin-bottom: 30px; border-bottom: 2px solid var(--accent); padding-bottom: 10px; }
+        .sidebar a { color: #fff; text-decoration: none; display: block; padding: 12px 15px; margin-bottom: 8px; border-radius: 6px; transition: 0.3s; }
+        .sidebar a:hover, .sidebar a.active { background: #004a8d; border-left: 4px solid var(--accent); }
+        
+        /* Konten */
+        .content { flex: 1; padding: var(--space); }
+        .card { background: white; padding: 30px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.08); border-left: 6px solid var(--nav-bg); margin-bottom: 20px; }
+        
+        /* Grid untuk Visi Misi */
+        .vision-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 20px; }
+        .vision-card { background: white; padding: 25px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.08); border-top: 4px solid var(--accent); }
+        .vision-card h3 { color: var(--nav-bg); margin-bottom: 10px; }
+        .vision-card p { color: #555; line-height: 1.6; }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <h2>🏛️ IPWIJA UKM</h2>
+        <a href="/" class="active">🏠 Beranda</a>
+        <a href="/daftar-ukm">📋 Daftar UKM</a>
+        <a href="/pendaftaran">📝 Pendaftaran</a>
+        <a href="/admin/login" style="background: var(--nav-bg); margin-top: 50px; text-align: center; border: 1px solid var(--accent); padding: 12px; display: block; border-radius: 6px; color: white; text-decoration: none;">⚙️ Khusus Admin</a>
+    </div>
+    <div class="content">
+        <div class="card">
+            <h1>Selamat Datang, Mahasiswa!</h1>
+            <p style="margin-top:15px; line-height:1.6;">Institut Pengembangan Wiraswasta Indonesia Jakarta (IPWIJA) berkomitmen menghasilkan lulusan unggul yang aktif berorganisasi melalui berbagai Unit Kegiatan Mahasiswa (UKM).</p>
+        </div>
+
+        <div class="card">
+            <h2>Filosofi Universitas IPWIJA</h2>
+            <p style="margin-top:10px; line-height:1.6;">Universitas IPWIJA hadir dengan konsep "Universitas Unggul Pencetak Profesional dan Wirausaha". Kami percaya bahwa pendidikan harus berorientasi pada pengembangan kemampuan praktis yang didukung oleh penguasaan ilmu pengetahuan, teknologi, dan kewirausahaan demi kesejahteraan masyarakat.</p>
+        </div>
+        
+        <div class="vision-grid">
+            <div class="vision-card">
+                <h3>Visi IPWIJA</h3>
+                <p>Menjadi institusi yang mencetak profesional dan wirausaha bertaraf internasional yang berkarakter, inovatif, dan relevan dengan kebutuhan dunia kerja.</p>
+            </div>
+            <div class="vision-card">
+                <h3>Misi UKM</h3>
+                <p>Menjadi wadah pengembangan minat dan bakat mahasiswa melalui organisasi yang dinamis, kolaboratif, dan mampu membangun jejaring profesional mahasiswa.</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

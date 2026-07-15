@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="id" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Daftar UKM - Portal UKM IPWIJA</title>
+    <style>
+        :root { --nav-bg: #002f5a; --accent: #ffb400; --bg: #f4f7f9; --space: 30px; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Arial, sans-serif; }
+        body { display: flex; min-height: 100vh; background-color: var(--bg); }
+        .sidebar { width: 260px; background: var(--nav-bg); color: white; padding: var(--space); flex-shrink: 0; }
+        .sidebar h2 { font-size: 20px; margin-bottom: 30px; border-bottom: 2px solid var(--accent); padding-bottom: 10px; }
+        .sidebar a { color: #fff; text-decoration: none; display: block; padding: 12px 15px; margin-bottom: 8px; border-radius: 6px; transition: 0.3s; }
+        .sidebar a:hover, .sidebar a.active { background: #004a8d; border-left: 4px solid var(--accent); }
+        .content { flex: 1; padding: var(--space); }
+        .ukm-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
+        .ukm-card { background: white; padding: 30px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.08); border-top: 5px solid var(--nav-bg); transition: 0.3s; }
+        .ukm-card:hover { transform: translateY(-5px); border-top-color: var(--accent); }
+        .btn-join { display: block; margin-top: 20px; padding: 10px; background: var(--nav-bg); color: white; text-align: center; border-radius: 4px; text-decoration: none; }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <h2>🏛️ IPWIJA UKM</h2>
+        <a href="/">🏠 Beranda</a>
+        <a href="/daftar-ukm" class="active">📋 Daftar UKM</a>
+        <a href="/pendaftaran">📝 Pendaftaran</a>
+    </div>
+    <div class="content">
+        <h1 style="color:var(--nav-bg); margin-bottom: 20px;">Daftar UKM Tersedia</h1>
+        <div class="ukm-grid">
+            <div th:each="ukm : ${listUkm}" class="ukm-card">
+                <h3 th:text="${ukm.nama}"></h3>
+                <p style="margin-top:10px;">Kontak: <span th:text="${ukm.kontakWa}"></span></p>
+                <a href="/pendaftaran" class="btn-join">Gabung Sekarang</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

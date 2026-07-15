@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="id" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Pendaftaran - Portal UKM IPWIJA</title>
+    <style>
+        :root { --nav-bg: #002f5a; --accent: #ffb400; --bg: #f4f7f9; --space: 30px; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Arial, sans-serif; }
+        body { display: flex; min-height: 100vh; background-color: var(--bg); }
+        .sidebar { width: 260px; background: var(--nav-bg); color: white; padding: var(--space); flex-shrink: 0; }
+        .sidebar h2 { font-size: 20px; margin-bottom: 30px; border-bottom: 2px solid var(--accent); padding-bottom: 10px; }
+        .sidebar a { color: #fff; text-decoration: none; display: block; padding: 12px 15px; margin-bottom: 8px; border-radius: 6px; }
+        .sidebar a:hover, .sidebar a.active { background: #004a8d; border-left: 4px solid var(--accent); }
+        .content { flex: 1; padding: var(--space); display: flex; justify-content: center; }
+        .card { background: white; padding: 30px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.08); width: 100%; max-width: 500px; border-top: 6px solid var(--nav-bg); }
+        input, select { width: 100%; padding: 12px; margin: 8px 0; border: 1px solid #ddd; border-radius: 6px; }
+        button { background: var(--nav-bg); color: white; padding: 12px; border: none; border-radius: 6px; width: 100%; cursor: pointer; font-weight: bold; margin-top: 10px; }
+        button:hover { background: var(--accent); color: var(--nav-bg); }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <h2>🏛️ IPWIJA UKM</h2>
+        <a href="/">🏠 Beranda</a>
+        <a href="/daftar-ukm">📋 Daftar UKM</a>
+        <a href="/pendaftaran" class="active">📝 Pendaftaran</a>
+    </div>
+    <div class="content">
+        <div class="card">
+            <h2>Formulir Pendaftaran</h2>
+            <input type="text" id="nama" placeholder="Nama Lengkap">
+            <input type="text" id="nim" placeholder="NIM">
+            <input type="text" id="kelas" placeholder="Kelas">
+            <input type="text" id="prodi" placeholder="Prodi">
+            <select id="ukmSelect">
+                <option value="">-- Pilih UKM --</option>
+                <option th:each="ukm : ${listUkm}" th:value="${ukm.kontakWa}" th:text="${ukm.nama}"></option>
+            </select>
+            <button onclick="kirimWa()">Kirim ke WhatsApp</button>
+        </div>
+    </div>
+    <script>
+        function kirimWa() {
+            const select = document.getElementById('ukmSelect');
+            const noWa = select.value;
+            const namaUkm = select.options[select.selectedIndex].text;
+            const msg = `Halo, saya ingin daftar UKM ${namaUkm}. Data: ${document.getElementById('nama').value}, ${document.getElementById('nim').value}`;
+            window.open(`https://wa.me/${noWa}?text=${msg}`, '_blank');
+        }
+    </script>
+</body>
+</html> 
