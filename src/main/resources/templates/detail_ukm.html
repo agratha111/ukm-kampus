@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="id" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Detail UKM | Universitas IPWIJA</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+        body { background-color: #f4f6f9; }
+        
+        /* Header Navigasi */
+        .header-nav { background-color: #0e004d; color: white; padding: 1rem 2rem; }
+        .logo { font-size: 1.5rem; font-weight: bold; }
+        
+        /* Container Utama */
+        .main-container { max-width: 800px; margin: 50px auto; padding: 20px; }
+        .content-box { background: #ffffff; padding: 3rem; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); border-top: 5px solid #0e004d; }
+        
+        h1 { color: #0e004d; margin-bottom: 20px; }
+        .info-label { font-weight: bold; color: #555; margin-top: 15px; border-bottom: 1px solid #eee; padding-bottom: 5px; }
+        .info-text { margin-top: 5px; color: #333; }
+        
+        .btn-daftar { display: inline-block; padding: 12px 25px; background: #0e004d; color: white; border-radius: 6px; text-decoration: none; margin-top: 25px; font-weight: bold; }
+        .btn-kembali { display: block; margin-top: 15px; color: #0e004d; text-decoration: none; font-size: 0.9rem; }
+    </style>
+</head>
+<body>
+    <header class="header-nav">
+        <nav><div class="logo">Universitas IPWIJA</div></nav>
+    </header>
+
+    <main class="main-container">
+        <div class="content-box">
+            <div th:if="${ukm != null}">
+                <h1 th:text="${ukm.nama}">Nama UKM</h1>
+                
+                <p class="info-label">Kontak WhatsApp:</p>
+                <p class="info-text" th:text="${ukm.kontakWa}"></p>
+                
+                <p class="info-label">Visi:</p>
+                <p class="info-text" th:text="${ukm.visi} ?: 'Belum diisi'"></p>
+                
+                <p class="info-label">Misi:</p>
+                <p class="info-text" th:text="${ukm.misi} ?: 'Belum diisi'"></p>
+                
+                <a href="/pendaftaran" class="btn-daftar">Lanjut ke Pendaftaran</a>
+            </div>
+            
+            <div th:if="${ukm == null}">
+                <h1>UKM Tidak Ditemukan</h1>
+                <p>Data UKM yang Anda cari tidak tersedia.</p>
+            </div>
+            
+            <a href="/daftar_ukm" class="btn-kembali">&larr; Kembali ke Daftar UKM</a>
+        </div>
+    </main>
+</body>
+</html>

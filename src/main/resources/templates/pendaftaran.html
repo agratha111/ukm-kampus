@@ -2,51 +2,165 @@
 <html lang="id" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Pendaftaran - Portal UKM IPWIJA</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pendaftaran UKM | Universitas IPWIJA</title>
     <style>
-        :root { --nav-bg: #002f5a; --accent: #ffb400; --bg: #f4f7f9; --space: 30px; }
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Arial, sans-serif; }
-        body { display: flex; min-height: 100vh; background-color: var(--bg); }
-        .sidebar { width: 260px; background: var(--nav-bg); color: white; padding: var(--space); flex-shrink: 0; }
-        .sidebar h2 { font-size: 20px; margin-bottom: 30px; border-bottom: 2px solid var(--accent); padding-bottom: 10px; }
-        .sidebar a { color: #fff; text-decoration: none; display: block; padding: 12px 15px; margin-bottom: 8px; border-radius: 6px; }
-        .sidebar a:hover, .sidebar a.active { background: #004a8d; border-left: 4px solid var(--accent); }
-        .content { flex: 1; padding: var(--space); display: flex; justify-content: center; }
-        .card { background: white; padding: 30px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.08); width: 100%; max-width: 500px; border-top: 6px solid var(--nav-bg); }
-        input, select { width: 100%; padding: 12px; margin: 8px 0; border: 1px solid #ddd; border-radius: 6px; }
-        button { background: var(--nav-bg); color: white; padding: 12px; border: none; border-radius: 6px; width: 100%; cursor: pointer; font-weight: bold; margin-top: 10px; }
-        button:hover { background: var(--accent); color: var(--nav-bg); }
+        /* Reset & Base */
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        body { background-color: #f4f6f9; color: #333; line-height: 1.6; }
+
+        /* === MENU NAVIGASI === */
+        .header-nav {
+            background-color: #0c004d;
+            color: white;
+            padding: 1rem 2rem;
+            position: relative;
+            z-index: 10;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .nav { display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: 0 auto; }
+        .logo { font-size: 1.5rem; font-weight: bold; }
+        .nav-links a { color: #e0f2f1; text-decoration: none; margin-left: 1.5rem; font-weight: 500; transition: color 0.3s; }
+        .nav-links a:hover, .nav-links a.active { color: #ffffff; border-bottom: 2px solid #ffffff; padding-bottom: 0.25rem; }
+
+        /* === HERO / BANNER === */
+        .hero {
+            position: relative; width: 100%; height: 250px;
+            background-image: url('/gedung.jpg'); /* Pastikan gambar ada di folder static */
+            background-size: cover; background-position: center;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .hero-overlay {
+            position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(8, 0, 77, 0.7);
+        }
+        .hero-content { position: relative; z-index: 2; text-align: center; color: white; }
+        .hero-title { font-size: 2.2rem; font-weight: 700; margin-bottom: 0.5rem; }
+
+        /* === KONTEN FORMULIR === */
+        .main-container { max-width: 700px; margin: 0 auto; padding: 0 2rem 3rem 2rem; }
+        .content-box {
+            background: #ffffff;
+            margin-top: -3rem; /* Menimpa banner */
+            position: relative;
+            z-index: 3;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            padding: 2.5rem;
+            border-top: 5px solid #0c004d;
+        }
+        
+        .section-title {
+            font-size: 1.5rem; color: #0c004d; margin-bottom: 1.5rem; text-align: center;
+            position: relative; display: block;
+        }
+        .section-title::after {
+            content: ''; display: block; width: 60px; height: 3px; background-color: #ffc107;
+            margin: 8px auto 0 auto; border-radius: 2px;
+        }
+
+        /* Style Input & Tombol */
+        .form-group { margin-bottom: 1rem; }
+        .form-group label { display: block; font-weight: 600; margin-bottom: 5px; color: #4a5568; }
+        input, select {
+            width: 100%; padding: 12px 15px; border: 1px solid #cbd5e0;
+            border-radius: 6px; font-size: 1rem; transition: border-color 0.3s;
+            background-color: #f8fafc;
+        }
+        input:focus, select:focus { outline: none; border-color: #004d40; background-color: #fff; }
+        
+        button {
+            background: #0e004d; color: white; padding: 14px; border: none;
+            border-radius: 6px; width: 100%; cursor: pointer; font-size: 1.1rem;
+            font-weight: bold; margin-top: 15px; transition: 0.3s;
+        }
+        button:hover { background: #ffc107; color: #004d40; }
+
+        @media (max-width: 768px) {
+            .nav { flex-direction: column; gap: 1rem; }
+            .nav-links a { margin: 0 0.5rem; }
+            .content-box { padding: 1.5rem; }
+        }
     </style>
 </head>
 <body>
-    <div class="sidebar">
-        <h2>🏛️ IPWIJA UKM</h2>
-        <a href="/">🏠 Beranda</a>
-        <a href="/daftar-ukm">📋 Daftar UKM</a>
-        <a href="/pendaftaran" class="active">📝 Pendaftaran</a>
-    </div>
-    <div class="content">
-        <div class="card">
-            <h2>Formulir Pendaftaran</h2>
-            <input type="text" id="nama" placeholder="Nama Lengkap">
-            <input type="text" id="nim" placeholder="NIM">
-            <input type="text" id="kelas" placeholder="Kelas">
-            <input type="text" id="prodi" placeholder="Prodi">
-            <select id="ukmSelect">
-                <option value="">-- Pilih UKM --</option>
-                <option th:each="ukm : ${listUkm}" th:value="${ukm.kontakWa}" th:text="${ukm.nama}"></option>
-            </select>
-            <button onclick="kirimWa()">Kirim ke WhatsApp</button>
+
+    <header class="header-nav">
+        <nav class="nav">
+            <div class="logo">Universitas IPWIJA</div>
+            <div class="nav-links">
+                <a href="/">Beranda</a>
+                <a href="/daftar_ukm">Daftar UKM</a>
+                <a href="/pendaftaran" class="active">Pendaftaran</a>
+            </div>
+        </nav>
+    </header>
+
+    <header class="hero">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1 class="hero-title">Formulir Pendaftaran</h1>
+            <p>Lengkapi data diri Anda untuk bergabung</p>
         </div>
-    </div>
+    </header>
+
+    <main class="main-container">
+        <div class="content-box">
+            <h2 class="section-title">Isi Data Diri</h2>
+            
+            <div class="form-group">
+                <label for="nama">Nama Lengkap</label>
+                <input type="text" id="nama" placeholder="Masukkan nama lengkap Anda">
+            </div>
+            
+            <div class="form-group">
+                <label for="nim">Nomor Induk Mahasiswa (NIM)</label>
+                <input type="text" id="nim" placeholder="Contoh: 202301234">
+            </div>
+            
+            <div class="form-group">
+                <label for="kelas">Kelas</label>
+                <input type="text" id="kelas" placeholder="Contoh: Reguler Pagi / Malam">
+            </div>
+            
+            <div class="form-group">
+                <label for="prodi">Program Studi</label>
+                <input type="text" id="prodi" placeholder="Contoh: Manajemen">
+            </div>
+            
+            <div class="form-group">
+                <label for="ukmSelect">Pilih UKM Tujuan</label>
+                <select id="ukmSelect">
+                    <option value="">-- Silakan Pilih UKM --</option>
+                    <option th:each="ukm : ${listUkm}" th:value="${ukm.kontakWa}" th:text="${ukm.nama}"></option>
+                </select>
+            </div>
+            
+            <button onclick="kirimWa()">Kirim Pendaftaran via WhatsApp</button>
+        </div>
+    </main>
+
     <script>
         function kirimWa() {
             const select = document.getElementById('ukmSelect');
             const noWa = select.value;
             const namaUkm = select.options[select.selectedIndex].text;
-            const msg = `Halo, saya ingin daftar UKM ${namaUkm}. Data: ${document.getElementById('nama').value}, ${document.getElementById('nim').value}`;
-            window.open(`https://wa.me/${noWa}?text=${msg}`, '_blank');
+            const nama = document.getElementById('nama').value;
+            const nim = document.getElementById('nim').value;
+            const kelas = document.getElementById('kelas').value;
+            const prodi = document.getElementById('prodi').value;
+
+            // Validasi sederhana jika form kosong
+            if(!nama || !nim || !noWa) {
+                alert("Harap lengkapi Nama, NIM, dan pilih UKM terlebih dahulu!");
+                return;
+            }
+
+            const msg = `Halo, saya ingin mendaftar UKM *${namaUkm}*.\n\nBerikut data diri saya:\n- Nama: ${nama}\n- NIM: ${nim}\n- Kelas: ${kelas}\n- Prodi: ${prodi}\n\nMohon informasi selanjutnya. Terima kasih!`;
+            
+            // Format link WhatsApp
+            window.open(`https://wa.me/${noWa}?text=${encodeURIComponent(msg)}`, '_blank');
         }
     </script>
 </body>
-</html> 
+</html>

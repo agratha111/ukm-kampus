@@ -19,16 +19,14 @@ public class MainController {
     private UkmRepository ukmRepository;
 
     @GetMapping("/") public String beranda() { return "beranda"; }
-    @GetMapping("/daftar-ukm") public String daftarUkm(Model model) { model.addAttribute("listUkm", ukmRepository.findAll()); return "daftar_ukm"; }
+    @GetMapping("/daftar_ukm") public String daftarUkm(Model model) { model.addAttribute("listUkm", ukmRepository.findAll()); return "daftar_ukm"; }
+    @GetMapping("/detail-ukm/{id}") public String detailUkm(@PathVariable Long id, Model model) { model.addAttribute("ukm", ukmRepository.findById(id).orElse(null)); return "detail_ukm"; }
     @GetMapping("/pendaftaran") public String pendaftaran(Model model) { model.addAttribute("listUkm", ukmRepository.findAll()); return "pendaftaran"; }
     @GetMapping("/admin/login") public String login() { return "admin_login"; }
 
     @PostMapping("/admin/login")
     public String prosesLogin(@RequestParam String username, @RequestParam String password, HttpSession session) {
-        if ("admin".equals(username) && "admin123".equals(password)) {
-            session.setAttribute("adminLoggedIn", true);
-            return "redirect:/admin/dashboard";
-        }
+        if ("admin".equals(username) && "admin123".equals(password)) { session.setAttribute("adminLoggedIn", true); return "redirect:/admin/dashboard"; }
         return "redirect:/admin/login?error";
     }
 
@@ -40,9 +38,14 @@ public class MainController {
     }
 
     @PostMapping("/admin/tambah-ukm")
-    public String tambahUkm(@RequestParam String nama, @RequestParam String kontakWa, HttpSession session) {
+    public String tambahUkm(@RequestParam String nama, @RequestParam String kontakWa, 
+                            @RequestParam(required = false) String visi, @RequestParam(required = false) String misi, 
+                            HttpSession session) {
         if (session.getAttribute("adminLoggedIn") == null) return "redirect:/admin/login";
-        ukmRepository.save(new Ukm(nama, kontakWa));
+        Ukm ukm = new Ukm(nama, kontakWa);
+        ukm.setVisi(visi);
+        ukm.setMisi(misi);
+        ukmRepository.save(ukm);
         return "redirect:/admin/dashboard";
     }
 

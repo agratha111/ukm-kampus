@@ -2,38 +2,81 @@
 <html lang="id" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Daftar UKM - Portal UKM IPWIJA</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daftar UKM | Universitas IPWIJA</title>
     <style>
-        :root { --nav-bg: #002f5a; --accent: #ffb400; --bg: #f4f7f9; --space: 30px; }
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Arial, sans-serif; }
-        body { display: flex; min-height: 100vh; background-color: var(--bg); }
-        .sidebar { width: 260px; background: var(--nav-bg); color: white; padding: var(--space); flex-shrink: 0; }
-        .sidebar h2 { font-size: 20px; margin-bottom: 30px; border-bottom: 2px solid var(--accent); padding-bottom: 10px; }
-        .sidebar a { color: #fff; text-decoration: none; display: block; padding: 12px 15px; margin-bottom: 8px; border-radius: 6px; transition: 0.3s; }
-        .sidebar a:hover, .sidebar a.active { background: #004a8d; border-left: 4px solid var(--accent); }
-        .content { flex: 1; padding: var(--space); }
-        .ukm-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
-        .ukm-card { background: white; padding: 30px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.08); border-top: 5px solid var(--nav-bg); transition: 0.3s; }
-        .ukm-card:hover { transform: translateY(-5px); border-top-color: var(--accent); }
-        .btn-join { display: block; margin-top: 20px; padding: 10px; background: var(--nav-bg); color: white; text-align: center; border-radius: 4px; text-decoration: none; }
+        /* Reset & Base */
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        body { background-color: #f4f6f9; color: #333; line-height: 1.6; }
+
+        /* === MENU NAVIGASI === */
+        .header-nav { background-color: #0e004d; color: white; padding: 1rem 2rem; z-index: 10; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        .nav { display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: 0 auto; }
+        .logo { font-size: 1.5rem; font-weight: bold; }
+        .nav-links a { color: #e0f2f1; text-decoration: none; margin-left: 1.5rem; font-weight: 500; }
+        .nav-links a:hover, .nav-links a.active { color: #ffffff; border-bottom: 2px solid #ffffff; }
+
+        /* === HERO === */
+        .hero { position: relative; width: 100%; height: 250px; background-image: url('/gedung.jpg'); background-size: cover; background-position: center; display: flex; align-items: center; justify-content: center; }
+        .hero-overlay { position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(5, 0, 77, 0.7); }
+        .hero-content { position: relative; z-index: 2; text-align: center; color: white; }
+        .hero-title { font-size: 2.2rem; font-weight: 700; margin-bottom: 0.5rem; }
+
+        /* === KONTEN UTAMA === */
+        .main-container { max-width: 1100px; margin: 0 auto; padding: 0 2rem 3rem 2rem; }
+        .content-box { background: #ffffff; margin-top: -3rem; position: relative; z-index: 3; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); padding: 2.5rem; }
+        .section-title { font-size: 1.5rem; color: #0c004d; margin-bottom: 1.5rem; text-align: center; }
+        .section-title::after { content: ''; display: block; width: 60px; height: 3px; background-color: #02006b; margin: 8px auto 0 auto; }
+
+        /* === GRID & KARTU UKM === */
+        .ukm-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.5rem; }
+        .ukm-card { background: white; padding: 1.5rem; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); border-top: 4px solid #0c004d; transition: 0.3s; display: flex; flex-direction: column; }
+        .ukm-card:hover { transform: translateY(-5px); border-top-color: #ffc107; }
+        .ukm-card h3 { color: #0c004d; font-size: 1.25rem; margin-bottom: 0.5rem; }
+        .ukm-category { display: inline-block; background-color: #e0f2f1; color: #000c4d; font-size: 0.8rem; padding: 0.25rem 0.75rem; border-radius: 12px; margin-bottom: 1rem; font-weight: 600; }
+        .ukm-desc { font-size: 0.95rem; color: #555; line-height: 1.5; flex-grow: 1; margin-bottom: 1.5rem; }
+        .btn-join { display: block; padding: 0.6rem; background: #00014d; color: white; text-align: center; border-radius: 6px; text-decoration: none; font-weight: bold; }
+        .btn-join:hover { background: #ffc107; color: #01004d; }
     </style>
 </head>
 <body>
-    <div class="sidebar">
-        <h2>🏛️ IPWIJA UKM</h2>
-        <a href="/">🏠 Beranda</a>
-        <a href="/daftar-ukm" class="active">📋 Daftar UKM</a>
-        <a href="/pendaftaran">📝 Pendaftaran</a>
-    </div>
-    <div class="content">
-        <h1 style="color:var(--nav-bg); margin-bottom: 20px;">Daftar UKM Tersedia</h1>
-        <div class="ukm-grid">
-            <div th:each="ukm : ${listUkm}" class="ukm-card">
-                <h3 th:text="${ukm.nama}"></h3>
-                <p style="margin-top:10px;">Kontak: <span th:text="${ukm.kontakWa}"></span></p>
-                <a href="/pendaftaran" class="btn-join">Gabung Sekarang</a>
+
+    <header class="header-nav">
+        <nav class="nav">
+            <div class="logo">Universitas IPWIJA</div>
+            <div class="nav-links">
+                <a href="/">Beranda</a>
+                <a href="/daftar_ukm" class="active">Daftar UKM</a>
+                <a href="/pendaftaran">Pendaftaran</a>
+            </div>
+        </nav>
+    </header>
+
+    <header class="hero">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1 class="hero-title">Daftar Unit Kegiatan Mahasiswa</h1>
+            <p>Temukan dan kembangkan minat serta bakatmu di sini</p>
+        </div>
+    </header>
+
+    <main class="main-container">
+        <div class="content-box">
+            <h2 class="section-title">UKM Tersedia</h2>
+            
+            <div class="ukm-grid" th:if="${not #lists.isEmpty(listUkm)}">
+                <div class="ukm-card" th:each="ukm : ${listUkm}">
+                    <h3 th:text="${ukm.nama}">Nama UKM</h3>
+                    <span class="ukm-category">Unit Kegiatan Mahasiswa</span>
+                    <p class="ukm-desc" th:text="'Hubungi via WA: ' + ${ukm.kontakWa}">Kontak</p>
+                    <a th:href="@{/detail-ukm/{id}(id=${ukm.id})}" class="btn-join" style="background-color: #ffc107; color: #000;">Lihat Detail</a>
+                </div>
+            </div>
+
+            <div th:if="${#lists.isEmpty(listUkm)}" style="text-align: center; padding: 20px;">
+                <p>Belum ada data UKM di database.</p>
             </div>
         </div>
-    </div>
+    </main>
 </body>
 </html>
