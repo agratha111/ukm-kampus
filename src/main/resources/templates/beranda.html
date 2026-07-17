@@ -9,7 +9,20 @@
     
     /* Background Putih Bersih */
     body { background-color: #ffffff; color: #334155; line-height: 1.6; }
+    .burger { display: none; cursor: pointer; }
+.burger span { display: block; width: 25px; height: 3px; background: white; margin: 5px; }
 
+@media (max-width: 600px) {
+  .burger { display: block; }
+  .nav-links { 
+    display: none; /* Sembunyikan menu secara default di HP */
+    flex-direction: column; 
+    width: 100%; 
+    text-align: center;
+    padding-top: 15px;
+  }
+  .nav-links.active { display: flex; } /* Tampilkan saat diklik */
+  }
     /* Navigasi */
     .header-nav { background-color: #0c004d; color: white; padding: 1rem 2rem; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
     .nav { display: flex; justify-content: space-between; align-items: center; max-width: 1100px; margin: 0 auto; }
@@ -19,14 +32,14 @@
 
     /* Hero Section */
     .hero { position: relative; width: 100%; height: 350px; background-image: url('/gedungipwija.jpg'); background-size: cover; background-position: center; display: flex; align-items: center; }
-    .hero-overlay { position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(to top, rgba(0,0,0,0.9), rgba(0,0,0,0.3)); }
+    .hero-overlay { position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(to top, hwb(0 0% 100% / 0.534), rgba(0, 0, 0, 0.534)); }
     .hero-content { position: relative; z-index: 2; max-width: 1100px; margin: 0 auto; padding: 0 2rem; display: flex; align-items: center; gap: 2rem; color: white; }
-    .hero-logo-box { width: 120px; height: 120px; background: white; border-radius: 12px; padding: 10px; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 10px rgba(0,0,0,0.3); }
+    .hero-logo-box { width: 120px; height: 120px; background: rgba(255, 255, 255, 0); border-radius: 12px; padding: 10px; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 10px rgba(0,0,0,0.3); }
     .hero-logo-box img { max-width: 100%; }
 
     /* Content Box - Desain Bersih */
     .main-container { max-width: 1100px; margin: -50px auto 3rem auto; padding: 0 2rem; position: relative; z-index: 3; }
-    .content-box { background: #ffffff; padding: 3rem; border-radius: 16px; border: 1px solid #e2e8f0; box-shadow: 0 10px 25px rgba(0,0,0,0.05); display: grid; gap: 2.5rem; }
+    .content-box { background: #ffffff; padding: 3rem; border-radius: 16px; border: 1px solid #fbff00; box-shadow: 0 10px 25px rgba(0,0,0,0.05); display: grid; gap: 2.5rem; }
 
     .section-title { font-size: 1.6rem; color: #0c004d; margin-bottom: 1rem; border-left: 5px solid #ffc107; padding-left: 15px; }
     .section-body p { margin-bottom: 1rem; color: #475569; text-align: justify; }
@@ -39,6 +52,9 @@
   <header class="header-nav">
     <nav class="nav">
       <div class="logo">Universitas IPWIJA</div>
+      <div class="burger" onclick="toggleMenu()">
+        <span></span><span></span><span></span>
+      </div>
       <div class="nav-links">
         <a href="/" class="active">Beranda</a>
         <a href="/daftar_ukm">Daftar UKM</a>
@@ -82,6 +98,12 @@
       </section>
     </div>
   </main>
+
+    <script>
+  function toggleMenu() {
+    document.getElementById("navLinks").classList.toggle("active");
+  }
+  </script>
 
 </body>
 </html>
