@@ -1,134 +1,102 @@
 <!DOCTYPE html>
-<html lang="id" xmlns:th="http://www.thymeleaf.org">
+<html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pendaftaran UKM | Universitas IPWIJA</title>
-    <style>
-        /* Reset & Base */
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-        body { background-color: #f4f6f9; color: #333; line-height: 1.6; }
-
-        /* === MENU NAVIGASI & BURGER === */
-        .header-nav { background-color: #0c004d; color: white; padding: 1rem 2rem; position: relative; z-index: 100; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
-        .nav { display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: 0 auto; }
-        .logo { font-size: 1.5rem; font-weight: bold; }
-        
-        .nav-links { display: flex; align-items: center; }
-        .nav-links a { color: #e0f2f1; text-decoration: none; margin-left: 1.5rem; font-weight: 500; transition: color 0.3s; }
-        .nav-links a:hover, .nav-links a.active { color: #ffffff; border-bottom: 2px solid #ffffff; padding-bottom: 0.25rem; }
-
-        /* Burger Style */
-        .burger { display: none; cursor: pointer; padding: 5px; }
-        .burger span { display: block; width: 25px; height: 3px; background: white; margin: 5px; }
-
-        /* Responsive Mobile */
-        @media (max-width: 768px) {
-            .burger { display: block; }
-            .nav-links { 
-                display: none; 
-                flex-direction: column; 
-                position: absolute; 
-                top: 65px; 
-                left: 0; 
-                width: 100%; 
-                background-color: #0c004d; 
-                padding: 1rem 0;
-                text-align: center;
-                box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            }
-            .nav-links.active { display: flex; }
-            .nav-links a { margin: 10px 0; padding: 5px; }
-        }
-
-        /* === HERO / BANNER === */
-        .hero { position: relative; width: 100%; height: 250px; background-image: url('/gedung.jpg'); background-size: cover; background-position: center; display: flex; align-items: center; justify-content: center; }
-        .hero-overlay { position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(8, 0, 77, 0.7); }
-        .hero-content { position: relative; z-index: 2; text-align: center; color: white; }
-        .hero-title { font-size: 2.2rem; font-weight: 700; margin-bottom: 0.5rem; }
-
-        /* === KONTEN FORMULIR === */
-        .main-container { max-width: 700px; margin: 0 auto; padding: 0 2rem 3rem 2rem; }
-        .content-box { background: #ffffff; margin-top: -3rem; position: relative; z-index: 3; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); padding: 2.5rem; border-top: 5px solid #0c004d; }
-        
-        .section-title { font-size: 1.5rem; color: #0c004d; margin-bottom: 1.5rem; text-align: center; position: relative; display: block; }
-        .section-title::after { content: ''; display: block; width: 60px; height: 3px; background-color: #ffc107; margin: 8px auto 0 auto; border-radius: 2px; }
-
-        /* Style Input & Tombol */
-        .form-group { margin-bottom: 1rem; }
-        .form-group label { display: block; font-weight: 600; margin-bottom: 5px; color: #4a5568; }
-        input, select { width: 100%; padding: 12px 15px; border: 1px solid #cbd5e0; border-radius: 6px; font-size: 1rem; background-color: #f8fafc; }
-        button { background: #0e004d; color: white; padding: 14px; border: none; border-radius: 6px; width: 100%; cursor: pointer; font-size: 1.1rem; font-weight: bold; margin-top: 15px; transition: 0.3s; }
-        button:hover { background: #ffc107; color: #004d40; }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pendaftaran UKM | UNIVERSITAS IPWIJA</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
 
-    <header class="header-nav">
-        <nav class="nav">
-            <div class="logo">Universitas IPWIJA</div>
-            <!-- Tombol Burger -->
-            <div class="burger" onclick="toggleMenu()">
-                <span></span><span></span><span></span>
-            </div>
-            <!-- Nav Links -->
-            <div class="nav-links" id="navLinks">
-                <a href="/">Beranda</a>
-                <a href="/daftar_ukm">Daftar UKM</a>
-                <a href="/pendaftaran" class="active">Pendaftaran</a>
-            </div>
-        </nav>
-    </header>
+  <nav>
+    <a href="/" class="nav-logo">
+      <div class="nav-logo-icon" style="background:transparent;">
+        <img src="/logo-ipwija.png" style="width:100%; height:100%; object-fit:contain;" />
+      </div>
+      <div>
+        <div class="nav-logo-text">UNIVERSITAS IPWIJA</div>
+        <div class="nav-logo-sub">Kampus Unggulan</div>
+      </div>
+    </a>
 
-    <header class="hero">
-        <div class="hero-overlay"></div>
-        <div class="hero-content">
-            <h1 class="hero-title">Formulir Pendaftaran</h1>
-            <p>Lengkapi data diri Anda untuk bergabung</p>
+    <div class="nav-links">
+      <a href="/">Beranda</a>
+      <a href="/daftar-ukm">Daftar UKM</a>
+      <a href="/pendaftaran" class="active">Pendaftaran</a>
+    </div>
+
+    <a href="/pendaftaran" class="nav-cta">Daftar Sekarang</a>
+  </nav>
+
+  <div class="breadcrumb">
+    <a href="/">Beranda</a>
+    <span>›</span>
+    <span>Pendaftaran</span>
+  </div>
+
+  <section class="page-hero">
+    <div class="hero-label">Pendaftaran UKM</div>
+    <h1>Formulir Pendaftaran</h1>
+    <p>Isi data diri dan pilih UKM yang ingin kamu ikuti.</p>
+  </section>
+
+  <main class="main">
+    <div class="form-card">
+      <div class="form-header">
+        <div class="section-label">Form UKM</div>
+        <h2>Daftar Menjadi Anggota UKM</h2>
+        <p>Lengkapi data di bawah ini, lalu pilih UKM yang kamu minati.</p>
+      </div>
+
+      <form class="ukm-form" onsubmit="submitRegistration(event)">
+        <div class="form-grid">
+          <div class="field">
+            <label for="inputNama">Nama Lengkap <span>*</span></label>
+            <input type="text" id="inputNama" placeholder="Masukkan nama lengkap kamu" />
+            <span class="field-error" id="errNama">Nama tidak boleh kosong.</span>
+          </div>
+
+          <div class="field">
+            <label for="inputNIM">NIM <span>*</span></label>
+            <input type="text" id="inputNIM" placeholder="Contoh: 2024010001" />
+            <span class="field-error" id="errNIM">NIM tidak boleh kosong.</span>
+          </div>
+
+          <div class="field full">
+            <label for="inputKelas">Kelas <span>*</span></label>
+            <input type="text" id="inputKelas" placeholder="Contoh: TI-3A" />
+            <span class="field-error" id="errKelas">Kelas tidak boleh kosong.</span>
+          </div>
+
+          
+          <div class="field full">
+            <div class="ukm-picker-label">UKM yang Diminati <span>*</span></div>
+            <!-- Pilihan UKM dari database akan di-load otomatis ke sini via JS -->
+            <div class="ukm-picker" id="ukmPicker"></div>
+            <span class="field-error" id="errUKM">Pilih salah satu UKM terlebih dahulu.</span>
+          </div>
         </div>
-    </header>
 
-    <main class="main-container">
-        <div class="content-box">
-            <h2 class="section-title">Isi Data Diri</h2>
-            
-            <div class="form-group">
-                <label for="nama">Nama Lengkap</label>
-                <input type="text" id="nama" placeholder="Masukkan nama lengkap Anda">
-            </div>
-            
-            <div class="form-group">
-                <label for="nim">Nomor Induk Mahasiswa (NIM)</label>
-                <input type="text" id="nim" placeholder="Contoh: 202301234">
-            </div>
-            
-            <div class="form-group">
-                <label for="kelas">Kelas</label>
-                <input type="text" id="kelas" placeholder="Contoh: Reguler Pagi / Malam">
-            </div>
-            
-            <div class="form-group">
-                <label for="prodi">Program Studi</label>
-                <input type="text" id="prodi" placeholder="Contoh: Manajemen">
-            </div>
-            
-            <div class="form-group">
-                <label for="ukmSelect">Pilih UKM Tujuan</label>
-                <select id="ukmSelect">
-                    <option value="">-- Silakan Pilih UKM --</option>
-                    <option th:each="ukm : ${listUkm}" th:value="${ukm.kontakWa}" th:text="${ukm.nama}"></option>
-                </select>
-            </div>
-            
-            <button onclick="kirimWa()">Kirim Pendaftaran via WhatsApp</button>
+        <div class="form-actions">
+          <button type="submit" class="primary-btn">Daftar Sekarang</button>
         </div>
-    </main>
+      </form>
 
-    <!-- Script untuk Toggle Menu -->
-    <script>
-        function toggleMenu() {
-            document.getElementById("navLinks").classList.toggle("active");
-        }
-    </script>
+      <div class="success-box" id="successBox">
+        <div class="success-icon">✅</div>
+        <h3>Pendaftaran Berhasil!</h3>
+        <p>Terima kasih telah mendaftar. Pengurus UKM akan menghubungi kamu segera.</p>
+        <div class="summary-box" id="summaryBox"></div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <p>© 2026 UNIVERSITAS IPWIJA. Hak Cipta Dilindungi.</p>
+  </footer>
+
+  <script src="/js/script.js"></script>
 </body>
 </html>

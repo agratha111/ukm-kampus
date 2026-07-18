@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Daftar UKM | UNIVERSITAS IPWIJA</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+<body>
+
+  <nav>
+    <a href="/" class="nav-logo">
+      <div class="nav-logo-icon" style="background:transparent;">
+        <img src="/logo-ipwija.png" style="width:100%; height:100%; object-fit:contain;" />
+      </div>
+      <div>
+        <div class="nav-logo-text">UNIVERSITAS IPWIJA</div>
+        <div class="nav-logo-sub">Kampus Unggulan</div>
+      </div>
+    </a>
+
+    <div class="nav-links">
+      <a href="/">Beranda</a>
+      <a href="/daftar-ukm" class="active">Daftar UKM</a>
+      <a href="/pendaftaran">Pendaftaran</a>
+    </div>
+
+    <a href="/pendaftaran" class="nav-cta">Daftar Sekarang</a>
+  </nav>
+
+  <div class="breadcrumb">
+    <a href="/">Beranda</a>
+    <span>›</span>
+    <span>Daftar UKM</span>
+  </div>
+
+  <section class="page-hero">
+    <div class="hero-label">Daftar UKM</div>
+    <h1>Pilih UKM Sesuai Minatmu</h1>
+    <p>Temukan komunitas terbaik dan kembangkan potensi dirimu.</p>
+  </section>
+
+  <main class="main">
+    <!-- Grid ini sekarang akan diisi oleh data dari Controller -->
+    <div class="ukm-grid" id="ukmGrid">
+        
+        <!-- th:each akan melakukan looping/perulangan untuk setiap data yang ada di listUkm -->
+        <div class="ukm-card" th:each="ukm : ${listUkm}">
+            <div class="card-top">
+                <h3 th:text="${ukm.nama}">Nama UKM</h3>
+            </div>
+            
+            <p th:text="${ukm.visi}">Visi singkat UKM...</p>
+            
+            <div class="card-footer">
+                <span class="member-count">Kontak: <span th:text="${ukm.kontakWa}">-</span></span>
+                <!-- Tombol ke halaman detail -->
+                <a th:href="@{'/detail-ukm/' + ${ukm.id}}" class="join-btn">Detail →</a>
+            </div>
+        </div>
+
+    </div>
+    
+  </main>
+
+  <footer>
+    <p>© 2026 UNIVERSITAS IPWIJA. Hak Cipta Dilindungi.</p>
+  </footer>
+
+  <script src="/js/script.js"></script>
+</body>
+</html>

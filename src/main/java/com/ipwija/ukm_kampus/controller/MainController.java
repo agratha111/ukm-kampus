@@ -15,18 +15,45 @@ import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class MainController {
+    
     @Autowired
     private UkmRepository ukmRepository;
 
-    @GetMapping("/") public String beranda() { return "beranda"; }
-    @GetMapping("/daftar_ukm") public String daftarUkm(Model model) { model.addAttribute("listUkm", ukmRepository.findAll()); return "daftar_ukm"; }
-    @GetMapping("/detail-ukm/{id}") public String detailUkm(@PathVariable Long id, Model model) { model.addAttribute("ukm", ukmRepository.findById(id).orElse(null)); return "detail_ukm"; }
-    @GetMapping("/pendaftaran") public String pendaftaran(Model model) { model.addAttribute("listUkm", ukmRepository.findAll()); return "pendaftaran"; }
-    @GetMapping("/admin/login") public String login() { return "admin_login"; }
+    @GetMapping("/") 
+    public String beranda() { 
+        return "beranda"; 
+    }
+
+    // Rute diperbaiki menjadi /daftar-ukm (dengan tanda hubung)
+    @GetMapping("/daftar-ukm") 
+    public String daftarUkm(Model model) { 
+        model.addAttribute("listUkm", ukmRepository.findAll()); 
+        return "daftar-ukm"; // Pastikan file di templates bernama daftar-ukm.html
+    }
+
+    @GetMapping("/detail-ukm/{id}") 
+    public String detailUkm(@PathVariable Long id, Model model) { 
+        model.addAttribute("ukm", ukmRepository.findById(id).orElse(null)); 
+        return "detail_ukm"; 
+    }
+
+    @GetMapping("/pendaftaran") 
+    public String pendaftaran(Model model) { 
+        model.addAttribute("listUkm", ukmRepository.findAll()); 
+        return "pendaftaran"; 
+    }
+
+    @GetMapping("/admin/login") 
+    public String login() { 
+        return "admin_login"; 
+    }
 
     @PostMapping("/admin/login")
     public String prosesLogin(@RequestParam String username, @RequestParam String password, HttpSession session) {
-        if ("admin".equals(username) && "admin123".equals(password)) { session.setAttribute("adminLoggedIn", true); return "redirect:/admin/dashboard"; }
+        if ("admin".equals(username) && "admin123".equals(password)) { 
+            session.setAttribute("adminLoggedIn", true); 
+            return "redirect:/admin/dashboard"; 
+        }
         return "redirect:/admin/login?error";
     }
 
@@ -57,5 +84,8 @@ public class MainController {
     }
 
     @GetMapping("/admin/logout")
-    public String logout(HttpSession session) { session.invalidate(); return "redirect:/"; }
+    public String logout(HttpSession session) { 
+        session.invalidate(); 
+        return "redirect:/"; 
+    }
 }

@@ -1,109 +1,96 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Beranda | Universitas IPWIJA</title>
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-    
-    /* Background Putih Bersih */
-    body { background-color: #ffffff; color: #334155; line-height: 1.6; }
-    .burger { display: none; cursor: pointer; }
-.burger span { display: block; width: 25px; height: 3px; background: white; margin: 5px; }
-
-@media (max-width: 600px) {
-  .burger { display: block; }
-  .nav-links { 
-    display: none; /* Sembunyikan menu secara default di HP */
-    flex-direction: column; 
-    width: 100%; 
-    text-align: center;
-    padding-top: 15px;
-  }
-  .nav-links.active { display: flex; } /* Tampilkan saat diklik */
-  }
-    /* Navigasi */
-    .header-nav { background-color: #0c004d; color: white; padding: 1rem 2rem; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
-    .nav { display: flex; justify-content: space-between; align-items: center; max-width: 1100px; margin: 0 auto; }
-    .logo { font-size: 1.5rem; font-weight: bold; }
-    .nav-links a { color: #e0f2f1; text-decoration: none; margin-left: 1.5rem; font-weight: 500; }
-    .nav-links a:hover, .nav-links a.active { color: #ffffff; border-bottom: 2px solid #ffffff; }
-
-    /* Hero Section */
-    .hero { position: relative; width: 100%; height: 350px; background-image: url('/gedungipwija.jpg'); background-size: cover; background-position: center; display: flex; align-items: center; }
-    .hero-overlay { position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(to top, hwb(0 0% 100% / 0.534), rgba(0, 0, 0, 0.534)); }
-    .hero-content { position: relative; z-index: 2; max-width: 1100px; margin: 0 auto; padding: 0 2rem; display: flex; align-items: center; gap: 2rem; color: white; }
-    .hero-logo-box { width: 120px; height: 120px; background: rgba(255, 255, 255, 0); border-radius: 12px; padding: 10px; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 10px rgba(0,0,0,0.3); }
-    .hero-logo-box img { max-width: 100%; }
-
-    /* Content Box - Desain Bersih */
-    .main-container { max-width: 1100px; margin: -50px auto 3rem auto; padding: 0 2rem; position: relative; z-index: 3; }
-    .content-box { background: #ffffff; padding: 3rem; border-radius: 16px; border: 1px solid #fbff00; box-shadow: 0 10px 25px rgba(0,0,0,0.05); display: grid; gap: 2.5rem; }
-
-    .section-title { font-size: 1.6rem; color: #0c004d; margin-bottom: 1rem; border-left: 5px solid #ffc107; padding-left: 15px; }
-    .section-body p { margin-bottom: 1rem; color: #475569; text-align: justify; }
-    .section-body ul { margin-left: 1.5rem; color: #475569; }
-    .section-body li { margin-bottom: 0.5rem; }
-  </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Beranda UKM | UNIVERSITAS IPWIJA</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
 
-  <header class="header-nav">
-    <nav class="nav">
-      <div class="logo">Universitas IPWIJA</div>
-      <div class="burger" onclick="toggleMenu()">
-        <span></span><span></span><span></span>
+  <nav>
+    <a href="/" class="nav-logo">
+      <div class="nav-logo-icon" style="background:transparent;">
+        <img src="/logo-ipwija.png" style="width:100%; height:100%; object-fit:contain;" />
       </div>
-      <div class="nav-links">
-        <a href="/" class="active">Beranda</a>
-        <a href="/daftar_ukm">Daftar UKM</a>
-        <a href="/pendaftaran">Pendaftaran</a>
-        <a href="/admin/login">Admin</a>
-      </div>
-    </nav>
-  </header>
-
-  <header class="hero">
-    <div class="hero-overlay"></div>
-    <div class="hero-content">
-      <div class="hero-logo-box"><img src="/logoipwija.jpg" alt="Logo IPWIJA"></div>
       <div>
-        <h1 class="hero-title">Universitas IPWIJA</h1>
-        <p>📍 Jakarta & Bogor | Kampus Berbasis Wirausaha</p>
+        <div class="nav-logo-text">UNIVERSITAS IPWIJA</div>
+        <div class="nav-logo-sub">Kampus Unggulan</div>
       </div>
-    </div>
-  </header>
+    </a>
 
-  <main class="main-container">
-    <div class="content-box">
-      <section>
-        <h2 class="section-title">Latar Belakang</h2>
-        <div class="section-body">
-          <p>Universitas IPWIJA berfokus pada pencetakan generasi unggul dengan jiwa kewirausahaan. Berawal dari STIE IPWIJA, kampus ini terus berinovasi dalam mengintegrasikan keilmuan akademis dengan praktik bisnis nyata.</p>
-        </div>
-      </section>
-
-      <section>
-        <h2 class="section-title">Visi & Misi</h2>
-        <div class="section-body">
-          <p><strong>Visi:</strong> Menjadi Universitas yang Unggul dalam Menghasilkan Lulusan yang Berjiwa Wirausaha dan Berdaya Saing di Tingkat Nasional maupun Global.</p>
-          <p><strong>Misi:</strong></p>
-          <ul>
-            <li>Menyelenggarakan Tridharma Perguruan Tinggi yang inovatif dan relevan dengan kebutuhan industri.</li>
-            <li>Mengembangkan iklim akademik yang menumbuhkan kreativitas, kemandirian, dan semangat kewirausahaan.</li>
-            <li>Menjalin kemitraan strategis dengan berbagai institusi dan dunia usaha.</li>
-          </ul>
-        </div>
-      </section>
+    <div class="nav-links">
+      <a href="/" class="active">Beranda</a>
+      <a href="/daftar-ukm">Daftar UKM</a>
+      <a href="/pendaftaran">Pendaftaran</a>
+      <a href="/admin_login">Admin</a>
     </div>
+
+    <a href="/pendaftaran" class="nav-cta">Daftar Sekarang</a>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-label">Kemahasiswaan</div>
+    <h1>Unit Kegiatan Mahasiswa</h1>
+    <p>
+      Wadah pengembangan minat, bakat, kepemimpinan, dan prestasi mahasiswa melalui beragam UKM aktif di kampus.
+    </p>
+  </section>
+
+  <main class="main">
+    <section class="home-section">
+      <div class="section-heading">
+        <div class="section-label">Tentang UKM</div>
+        <h2>Temukan Komunitas, Kembangkan Potensi, Raih Prestasi</h2>
+        <p>
+          Unit Kegiatan Mahasiswa (UKM) adalah ruang terbaik bagi 
+          mahasiswa untuk bertumbuh, berekspresi, dan mengembangkan 
+          diri di luar perkuliahan. Melalui berbagai bidang seperti organisasi, olahraga, seni, akademik, keagamaan, media, hingga kegiatan sosial, UKM menjadi tempat untuk mengasah bakat, memperluas relasi, membangun jiwa kepemimpinan, serta menciptakan pengalaman berharga selama masa kuliah. Bersama UKM, kamu tidak hanya belajar, tetapi juga berkarya, berprestasi, dan menemukan versi terbaik dari dirimu.
+        </p>
+      </div>
+
+      <div class="home-grid">
+        <div class="feature-card">
+          <div class="feature-icon">🎯</div>
+          <h3>Kembangkan Potensi</h3>
+          <p>Temukan ruang untuk bertumbuh, mengasah bakat, dan meningkatkan 
+            kemampuanmu melalui kegiatan yang aktif, terarah, dan bermanfaat.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">🤝</div>
+          <h3>Bangun Relasi</h3>
+          <p>Perluas wawasan dan koneksi melalui interaksi dengan teman,
+             senior, serta komunitas kampus yang inspiratif dan suportif.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">🏆</div>
+          <h3>Raih Prestasi</h3>
+          <p>Ikuti berbagai kegiatan, kompetisi, dan program 
+            pengembangan diri untuk meraih pengalaman sekaligus prestasi terbaikmu.</p>
+        </div>
+      </div>
+
+      <div class="cta-banner">
+        <div>
+          <h3>Sudah siap bergabung dengan UKM impianmu?</h3>
+          <p>Lihat daftar UKM yang tersedia dan pilih yang paling cocok untuk menemani kuliahmu.</p>
+        </div>
+        <div class="cta-actions">
+          <a href="/daftar-ukm" class="primary-btn">Lihat Daftar UKM</a>
+          <a href="/pendaftaran" class="secondary-btn">Daftar Sekarang</a>
+        </div>
+      </div>
+    </section>
   </main>
 
-    <script>
-  function toggleMenu() {
-    document.getElementById("navLinks").classList.toggle("active");
-  }
-  </script>
+  <footer>
+    <p>Dibuat Oleh Universitas IPWIJA Sistem Informasi 241 © 2026. Hak Cipta Dilindungi.</p>
+  </footer>
 
+  <script src="/js/script.js"></script>
 </body>
 </html>

@@ -1,57 +1,81 @@
 <!DOCTYPE html>
 <html lang="id" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Detail UKM | Universitas IPWIJA</title>
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
-        body { background-color: #f4f6f9; }
-        
-        /* Header Navigasi */
-        .header-nav { background-color: #0e004d; color: white; padding: 1rem 2rem; }
-        .logo { font-size: 1.5rem; font-weight: bold; }
-        
-        /* Container Utama */
-        .main-container { max-width: 800px; margin: 50px auto; padding: 20px; }
-        .content-box { background: #ffffff; padding: 3rem; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); border-top: 5px solid #0e004d; }
-        
-        h1 { color: #0e004d; margin-bottom: 20px; }
-        .info-label { font-weight: bold; color: #555; margin-top: 15px; border-bottom: 1px solid #eee; padding-bottom: 5px; }
-        .info-text { margin-top: 5px; color: #333; }
-        
-        .btn-daftar { display: inline-block; padding: 12px 25px; background: #0e004d; color: white; border-radius: 6px; text-decoration: none; margin-top: 25px; font-weight: bold; }
-        .btn-kembali { display: block; margin-top: 15px; color: #0e004d; text-decoration: none; font-size: 0.9rem; }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Detail UKM | UNIVERSITAS IPWIJA</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
-    <header class="header-nav">
-        <nav><div class="logo">Universitas IPWIJA</div></nav>
-    </header>
 
-    <main class="main-container">
-        <div class="content-box">
-            <div th:if="${ukm != null}">
-                <h1 th:text="${ukm.nama}">Nama UKM</h1>
-                
-                <p class="info-label">Kontak WhatsApp:</p>
-                <p class="info-text" th:text="${ukm.kontakWa}"></p>
-                
-                <p class="info-label">Visi:</p>
-                <p class="info-text" th:text="${ukm.visi} ?: 'Belum diisi'"></p>
-                
-                <p class="info-label">Misi:</p>
-                <p class="info-text" th:text="${ukm.misi} ?: 'Belum diisi'"></p>
-                
-                <a href="/pendaftaran" class="btn-daftar">Lanjut ke Pendaftaran</a>
-            </div>
-            
-            <div th:if="${ukm == null}">
-                <h1>UKM Tidak Ditemukan</h1>
-                <p>Data UKM yang Anda cari tidak tersedia.</p>
-            </div>
-            
-            <a href="/daftar_ukm" class="btn-kembali">&larr; Kembali ke Daftar UKM</a>
+  <nav>
+    <a href="/" class="nav-logo">
+      <div class="nav-logo-icon" style="background:transparent;">
+        <img src="/logo-ipwija.png" style="width:100%; height:100%; object-fit:contain;" />
+      </div>
+      <div>
+        <div class="nav-logo-text">UNIVERSITAS IPWIJA</div>
+        <div class="nav-logo-sub">Kampus Unggulan</div>
+      </div>
+    </a>
+
+    <div class="nav-links">
+      <a href="/">Beranda</a>
+      <a href="/daftar-ukm" class="active">Daftar UKM</a>
+      <a href="/pendaftaran">Pendaftaran</a>
+    </div>
+
+    <a href="/pendaftaran" class="nav-cta">Daftar Sekarang</a>
+  </nav>
+
+  <div class="breadcrumb">
+    <a href="/">Beranda</a>
+    <span>›</span>
+    <a href="/daftar-ukm">Daftar UKM</a>
+    <span>›</span>
+    <span id="ukmBreadcrumb" th:text="${ukm != null ? ukm.nama : 'Detail UKM'}">Detail UKM</span>
+  </div>
+
+  <main class="container">
+    <div class="detail-card">
+        <!-- Header Section -->
+        <div class="header">
+            <h1 th:text="${ukm.nama}">Nama UKM</h1>
+            <span class="badge" th:text="${ukm.kategori}">Kategori</span>
         </div>
-    </main>
+
+        <!-- Contact Section -->
+        <div class="contact-box">
+            <p><strong>Hubungi Admin via WhatsApp:</strong></p>
+            <a th:href="@{'https://wa.me/' + ${ukm.kontakWa}}" target="_blank" class="wa-btn" th:text="${ukm.kontakWa}">Nomor WA</a>
+        </div>
+
+        <!-- Content Section -->
+        <div class="content">
+            <h3>Visi</h3>
+            <p th:text="${ukm.visi}">Visi...</p>
+            
+            <h3>Misi</h3>
+            <p th:text="${ukm.misi}">Misi...</p>
+
+            <h3>Deskripsi</h3>
+            <p th:text="${ukm.deskripsi}">Penjelasan lengkap...</p>
+        </div>
+
+        <!-- Actions -->
+        <div class="actions">
+            <a href="/daftar-ukm" class="btn-back">← Kembali</a>
+            <a href="/pendaftaran" class="btn-join">Daftar Sekarang</a>
+        </div>
+    </div>
+  </main>
+  
+  <footer>
+    <p>© 2026 UNIVERSITAS IPWIJA. Hak Cipta Dilindungi.</p>
+  </footer>
+
+  <script src="/js/script.js"></script>
 </body>
 </html>
